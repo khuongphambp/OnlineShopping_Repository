@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OnlineShop.Books;
 using OnlineShop.Users;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
@@ -21,6 +22,9 @@ namespace OnlineShop.EntityFrameworkCore
     public class OnlineShopDbContext : AbpDbContext<OnlineShopDbContext>
     {
         public DbSet<AppUser> Users { get; set; }
+
+        public DbSet<Book> Books { get; set; }
+
 
         /* Add DbSet properties for your Aggregate Roots / Entities here.
          * Also map them inside OnlineShopDbContextModelCreatingExtensions.ConfigureOnlineShop
