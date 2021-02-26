@@ -13,6 +13,29 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { APP_ROUTE_PROVIDER } from './route.provider';
+import { AdminComponent } from './Admin/admin/admin.component';
+import { AdminHeaderComponent } from './Admin/admin-header/admin-header.component';
+import { AdminFooterComponent } from './Admin/admin-footer/admin-footer.component';
+import { AdminDisplayProductsComponent } from './Admin/Pages/admin-display-products/admin-display-products.component';
+import { AdminCreateProductsComponent } from './Admin/Pages/admin-create-products/admin-create-products.component';
+import { AdminEditProductsComponent } from './Admin/Pages/admin-edit-products/admin-edit-products.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes : Routes = [
+  {
+    path : "display",
+    component : AdminDisplayProductsComponent
+  },{
+    path : "create",
+    component : AdminCreateProductsComponent
+  },{
+    path : "",
+    component : AdminDisplayProductsComponent
+  },{
+    path : "edit",
+    component : AdminEditProductsComponent
+  }
+]
 
 @NgModule({
   imports: [
@@ -29,8 +52,9 @@ import { APP_ROUTE_PROVIDER } from './route.provider';
     SettingManagementConfigModule.forRoot(),
     NgxsModule.forRoot(),
     ThemeBasicModule.forRoot(),
+    RouterModule.forRoot(appRoutes)
   ],
-  declarations: [AppComponent],
+  declarations: [AppComponent, AdminComponent, AdminHeaderComponent, AdminFooterComponent, AdminDisplayProductsComponent, AdminCreateProductsComponent, AdminEditProductsComponent],
   providers: [APP_ROUTE_PROVIDER],
   bootstrap: [AppComponent],
 })
