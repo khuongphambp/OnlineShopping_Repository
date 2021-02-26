@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OnlineShop.Bookss;
+using OnlineShop.Books;
 using Volo.Abp;
 using Volo.Abp.EntityFrameworkCore.Modeling;
 
@@ -17,8 +17,6 @@ namespace OnlineShop.EntityFrameworkCore
             {
                 b.ToTable(OnlineShopConsts.DbTablePrefix + "Books", OnlineShopConsts.DbSchema);
                 b.ConfigureByConvention(); //auto configure for the base class props
-                b.HasKey(x=>x.BookId);
-                b.Property(x=>x.BookId).UseIdentityColumn();
                 //...
             });
         }

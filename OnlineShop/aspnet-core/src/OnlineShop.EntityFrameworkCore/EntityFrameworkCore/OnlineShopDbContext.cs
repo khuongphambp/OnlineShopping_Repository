@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OnlineShop.Bookss;
+using OnlineShop.Books;
 using OnlineShop.Users;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;

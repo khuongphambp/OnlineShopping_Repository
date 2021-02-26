@@ -7,7 +7,6 @@ namespace OnlineShop.Books
 {
     public class CreateUpdateBookDto
     {
-        public int BookId { get; set; }
         [Required]
         public string BookName { get; set; }
         [Required]
