@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OnlineShop.Bookss;
 using Volo.Abp;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 
 namespace OnlineShop.EntityFrameworkCore
 {
@@ -11,12 +13,14 @@ namespace OnlineShop.EntityFrameworkCore
 
             /* Configure your own tables/entities inside here */
 
-            //builder.Entity<YourEntity>(b =>
-            //{
-            //    b.ToTable(OnlineShopConsts.DbTablePrefix + "YourEntities", OnlineShopConsts.DbSchema);
-            //    b.ConfigureByConvention(); //auto configure for the base class props
-            //    //...
-            //});
+            builder.Entity<Book>(b =>
+            {
+                b.ToTable(OnlineShopConsts.DbTablePrefix + "Books", OnlineShopConsts.DbSchema);
+                b.ConfigureByConvention(); //auto configure for the base class props
+                b.HasKey(x=>x.BookId);
+                b.Property(x=>x.BookId).UseIdentityColumn();
+                //...
+            });
         }
     }
 }
