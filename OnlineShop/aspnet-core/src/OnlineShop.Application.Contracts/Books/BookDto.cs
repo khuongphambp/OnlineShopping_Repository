@@ -8,7 +8,7 @@ namespace OnlineShop.Books
     public class BookDto : AuditedEntityDto<Guid>
     {
         public string BookName { get; set; }
-        public int Price { get; set; }
+        public float Price { get; set; }
         public string Description { get; set; }
     }
 }

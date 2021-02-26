@@ -10,7 +10,7 @@ namespace OnlineShop.Books
         [Required]
         public string BookName { get; set; }
         [Required]
-        public int Price { get; set; }
+        public float Price { get; set; }
         [Required]
         public string Description { get; set; }
     }
