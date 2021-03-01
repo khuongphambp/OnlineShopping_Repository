@@ -1,0 +1,49 @@
+<div class="container-fluid">
+    
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#">Dashboard</a>
+      </li>
+      <li class="breadcrumb-item active">Tables</li>
+    </ol>
+
+    <!-- DataTables Example -->
+    <div class="card mb-3">
+      <div class="card-header">
+        <i class="fas fa-table"></i>
+        Product</div>
+      <div class="card-body">
+        <div>
+          <nav class="navbar">
+            <input class="form-control" type="text" name="bookname" [(ngModel)] = "bookname" (ngModelChange)="Search()"> 
+          </nav>
+          <table class="table table-bordered" width="70%" cellspacing="0">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of listProduct | paginate : {itemsPerPage:1,currentPage : page}">
+                <td>{{item.id}}</td>
+                <td>{{item.bookName}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.description}}</td>
+                <td><a>Delete</a>  
+                  <a style="padding: 6px;">Edit</a></td>
+             </tr>
+            </tbody>
+            
+          </table>
+          <pagination-controls (pageChange)="page = $event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
