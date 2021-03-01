@@ -29,7 +29,7 @@ const appRoutes : Routes = [
     path : "",
     component : AdminDisplayProductsComponent
   },{
-    path : "edit",
+    path : "edit/:id",
     component : AdminEditProductComponent
   }
 ]

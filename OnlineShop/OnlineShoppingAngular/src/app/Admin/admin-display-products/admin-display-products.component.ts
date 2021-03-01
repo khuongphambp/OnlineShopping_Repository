@@ -16,9 +16,8 @@ export class AdminDisplayProductsComponent implements OnInit {
   constructor(private productService : ProductService) { }
 
   ngOnInit(): void {
-    this.productService.getProduct().subscribe(
+    this.productService.getProducts().subscribe(
       (response : any)=>{
-        console.log(response.items);
         this.listProduct = response.items;
       });
   }
@@ -31,6 +30,13 @@ Search(){
       return response.bookName.toLocaleLowerCase().match(this.bookname.toLocaleLowerCase());
     });
   }
+}
+
+onDelete(id:string){
+  this.productService.deleteProduct(id).subscribe(data=>{
+    alert('Delete Successfully'),
+    this.ngOnInit();
+  })
 }
 
 }
