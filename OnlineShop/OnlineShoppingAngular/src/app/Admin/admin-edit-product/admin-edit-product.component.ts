@@ -10,7 +10,7 @@ import { ProductService } from 'src/app/Services/ProductServices.service';
 })
 export class AdminEditProductComponent implements OnInit {
 
-  product = new Product('','',0,'');
+  product = new Product('','','','');
 
   constructor(private productService:ProductService,private route:ActivatedRoute,private router:Router) { }
 

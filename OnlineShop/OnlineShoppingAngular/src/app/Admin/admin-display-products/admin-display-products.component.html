@@ -15,13 +15,18 @@
         Product</div>
       <div class="card-body">
         <div>
+          <div class="text-lg-right pt-2">
+            <button id="create" class="btn btn-primary" type="button" [routerLink]="['/create']" routerLinkActive="router-link-active" >
+              <i class="fa fa-plus mr-1"></i>
+              <span>New Book</span>
+            </button>
+          </div>  
           <nav class="navbar">
             <input class="form-control" type="text" name="bookname" [(ngModel)] = "bookname" (ngModelChange)="Search()"> 
           </nav>
           <table class="table table-bordered" width="70%" cellspacing="0">
             <thead>
               <tr>
-                <th>ID</th>
                 <th>Name</th>
                 <th>Price</th>
                 <th>Description</th>
@@ -29,8 +34,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of listProduct | paginate : {itemsPerPage:5,currentPage : page}">
-                <td>{{item.id}}</td>
+              <tr *ngFor="let item of listProduct | paginate : config">
                 <td>{{item.bookName}}</td>
                 <td>{{item.price}}</td>
                 <td>{{item.description}}</td>
@@ -40,7 +44,7 @@
             </tbody>
             
           </table>
-          <pagination-controls (pageChange)="page = $event"></pagination-controls>
+          <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 export class ProductDto {
     constructor(
         public bookName : string,
-        public price : number,
+        public price : string,
         public description : string
     ){}
 }

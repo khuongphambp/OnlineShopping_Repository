@@ -12,7 +12,7 @@ import { ProductService } from 'src/app/Services/ProductServices.service';
 })
 export class AdminCreateProductsComponent implements OnInit {
 
-  private testProduct = new ProductDto('Khuong',13.69,'Really Nice Book');
+  testProduct = new ProductDto('','','');
 
   constructor(private productService : ProductService, private router : Router) { }
 

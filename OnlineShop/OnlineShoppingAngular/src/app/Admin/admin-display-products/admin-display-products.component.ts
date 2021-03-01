@@ -11,9 +11,14 @@ export class AdminDisplayProductsComponent implements OnInit {
 
   listProduct : Product[]  = [];
   bookname :any;
-  page : number = 1;
+  config: any;
 
-  constructor(private productService : ProductService) { }
+  constructor(private productService : ProductService) {
+    this.config = {
+      itemsPerPage: 5,
+      currentPage: 1
+    };
+   }
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe(
@@ -37,6 +42,10 @@ onDelete(id:string){
     alert('Delete Successfully'),
     this.ngOnInit();
   })
+}
+
+pageChanged(event:any){
+  this.config.currentPage = event;
 }
 
 }

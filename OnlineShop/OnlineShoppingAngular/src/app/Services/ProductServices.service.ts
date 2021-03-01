@@ -27,7 +27,7 @@ export class ProductService{
      return this.httpclient.delete(this.BaseUrl + '/' + id);
    }
 
-   editProduct(id : string,product : ProductDto){
+   editProduct(id : string,product : Product){
      return this.httpclient.put(this.BaseUrl + '/' +id, product);
    }
 }
