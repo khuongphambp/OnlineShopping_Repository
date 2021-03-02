@@ -8,11 +8,13 @@ import { ProductDto } from "../Classes/ProductDto";
 export class ProductService{
 
      private BaseUrl = "https://localhost:44320/api/app/book";
+
+     MaxResulCount = "?MaxResultCount=100";
      
     constructor(private httpclient : HttpClient){}
 
    getProducts() : Observable<any> {
-        return this.httpclient.get(this.BaseUrl);
+        return this.httpclient.get(this.BaseUrl+this.MaxResulCount);
    }
 
    getProduct(id:string | null) : Observable<any> {

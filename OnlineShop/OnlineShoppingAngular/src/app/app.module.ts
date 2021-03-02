@@ -17,6 +17,7 @@ import { from } from 'rxjs';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 const appRoutes : Routes = [
   {
@@ -53,7 +54,8 @@ const appRoutes : Routes = [
     Ng2OrderModule,
     NgxPaginationModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TooltipModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
