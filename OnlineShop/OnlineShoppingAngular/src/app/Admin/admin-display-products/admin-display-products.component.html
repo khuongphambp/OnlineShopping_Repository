@@ -34,7 +34,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of listProduct | paginate : config">
+              <tr *ngFor="let item of listProduct ">
                 <td>{{item.bookName}}</td>
                 <td>{{item.price | currency : '$' }}</td>
                 <td>{{item.description}}</td>
@@ -45,7 +45,15 @@
             </tbody>
             
           </table>
-          <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+
+          <div class="pagination">
+            <a href="">&laquo;</a>
+            <a type="button" *ngFor='let in of arrayOne() ;let i = index' (click)="changepage(i+1)" >{{i+1}}</a>
+            <a href="">&raquo;</a>
+          </div>
+
+
+
         </div>
       </div>
     </div>

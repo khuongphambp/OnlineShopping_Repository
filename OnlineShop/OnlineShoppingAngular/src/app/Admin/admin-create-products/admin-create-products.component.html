@@ -16,7 +16,7 @@
                     
                     <div class="form-group">
                       <label for="password">Price *</label>
-                      <input class="form-control" pattern="\d*" style="margin-bottom: 10px;" min="0" name="price" ngModel type="text" required [(ngModel)]="testProduct.price" #price="ngModel" >
+                      <input class="form-control" pattern="\d+(.\d{2})?" style="margin-bottom: 10px;" min="0" name="price" ngModel type="text" required [(ngModel)]="testProduct.price" #price="ngModel" >
                     </div>
 
                     <div class="alert alert-danger" *ngIf="price.invalid && price.touched">

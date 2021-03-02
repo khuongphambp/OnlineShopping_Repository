@@ -5,7 +5,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace OnlineShop.Books
 {
-    public class BookDto : AuditedEntityDto<Guid>
+    public class BookDto 
     {
         public string BookName { get; set; }
         public float Price { get; set; }

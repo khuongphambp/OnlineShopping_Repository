@@ -11,6 +11,7 @@ export class AdminDisplayProductsComponent implements OnInit {
 
   listProduct : Product[]  = [];
   bookname :any;
+  totalpage : any;
   config: any;
 
   constructor(private productService : ProductService) {
@@ -21,9 +22,11 @@ export class AdminDisplayProductsComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(
+    this.productService.getProductByPage(1,5).subscribe(
       (response : any)=>{
-        this.listProduct = response.items;
+        this.listProduct = response.item1;
+        console.log(response.item2);
+        this.totalpage = response.item2;
       });
   }
 
@@ -44,8 +47,26 @@ onDelete(id:string){
   })
 }
 
+changepage(currenPage:number){
+  this.productService.getProductByPage(currenPage,5).subscribe(
+    (response : any)=>{
+      this.listProduct = response.item1;
+      console.log(response.item2);
+      this.totalpage = response.item2;
+    });
+}
+
+changepage1(){
+  console.log("Hello")
+    
+}
+
 pageChanged(event:any){
   this.config.currentPage = event;
+}
+
+arrayOne(): any[] {
+  return Array(this.totalpage);
 }
 
 }
