@@ -7,3 +7,50 @@ button.button-submit{
 button.btn-submit:focus,button.btn-submit:hover{
     background-color: #38547b;
 }
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #041f05;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+#selectpage{
+    padding-bottom: 10px;
+    float: right;
+}
+
+#myselect{
+    width: 50px; float: right;
+}
+
+#editbutton{
+    margin-left: 10px;
+}
+
+#savebutton{
+    width: 20%; margin-left: 600px;
+}
+
+#editname{
+    margin-bottom: 10px;
+}
+
+#editprice{
+    margin-bottom: 10px;
+}
+
+#editdescription{
+    margin-bottom: 50px;
+}

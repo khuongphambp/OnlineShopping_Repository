@@ -16,7 +16,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { from } from 'rxjs';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 const appRoutes : Routes = [
   {
@@ -29,7 +30,7 @@ const appRoutes : Routes = [
     path : "",
     component : AdminDisplayProductsComponent
   },{
-    path : "edit",
+    path : "edit/:id",
     component : AdminEditProductComponent
   }
 ]
@@ -52,7 +53,9 @@ const appRoutes : Routes = [
     Ng2SearchPipeModule,
     Ng2OrderModule,
     NgxPaginationModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    TooltipModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
