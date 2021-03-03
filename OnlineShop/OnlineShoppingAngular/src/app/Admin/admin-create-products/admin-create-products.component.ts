@@ -19,14 +19,12 @@ export class AdminCreateProductsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   onSubmit(form:NgForm){
     this.productService.createProduct(form.value)
     .subscribe(reponse=>{
       alert('Add Sucess');
       this.router.navigateByUrl("display");
-    }
-    )
+    })
   }
 
 }

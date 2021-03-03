@@ -1,66 +1,74 @@
 <div class="container-fluid">
-    
-    <!-- Breadcrumbs-->
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="#">Dashboard</a>
-      </li>
-      <li class="breadcrumb-item active">Tables</li>
-    </ol>
 
-    <!-- DataTables Example -->
-    <div class="card mb-3">
-      <div class="card-header">
-        <i class="fas fa-table"></i>
-        Product</div>
-      <div class="card-body">
+  <!-- Breadcrumbs-->
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="#">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Tables</li>
+  </ol>
+
+  <!-- DataTables Example -->
+  <div class="card mb-3">
+    <div class="card-header">
+      <i class="fas fa-table"></i>
+      Product
+    </div>
+    <div class="card-body">
+      <div>
         <div>
-          <div>
-          <select (change)="onChange(mySelect.value)"  #mySelect style="width: 50px; text-align: center;" >
-            <option value="3">3</option>
-            <option value="5">5</option>
-          </select>
           <div class="text-lg-right pt-2">
-            <button id="create" class="btn btn-primary" type="button" [routerLink]="['/create']" routerLinkActive="router-link-active" >
+            <button id="create" class="btn btn-primary" type="button" [routerLink]="['/create']"
+              routerLinkActive="router-link-active">
               <i class="fa fa-plus mr-1"></i>
               <span>New Book</span>
             </button>
-          </div>  
+          </div>
+          <div class="ext-lg-right pt-2" id="selectpage">
+            <select (change)="onChange(mySelect.value)" id="myselect" #mySelect>
+              <option value="3">3</option>
+              <option value="5">5</option>
+            </select>
+          </div>
         </div>
-          
-          <table class="table table-bordered" width="70%" cellspacing="0">
-            <thead>
-              <tr>
-                <th width="20%" >Name</th>
-                <th width="20%" >Price</th>
-                <th width="50%" >Description</th>
-                <th width="10%" >Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of listProduct ">
-                <td>{{item.bookName}}</td>
-                <td>{{item.price | currency : '$' }}</td>
-                <td>{{item.description}}</td>
-                <td><button (click)="onDelete(item.id)"  [routerLink]="['/admin/displayproduct']" routerLinkActive="router-link-active" tooltip="Delete Product" placement="top" class="btn btn-danger" style="padding: 6px;" >Delete</button>  
-                  <button [routerLink]="['/edit',item.id]" routerLinkActive="router-link-active" 
-                  tooltip="Edit the Product" placement="top" class="btn btn-primary" style="padding-left: 10px;" >Edit</button> </td>
-             </tr>
-            </tbody>
-            
-          </table>
-          <div style="float: right; ">
-          <div class="pagination" style="padding-top: 20px;" >
-            <a type="button" (click)="prePage()" >&laquo;</a>
-            <a type="button" *ngFor='let in of arrayOne() ;let i = index' (click)="changepage(i+1)" >{{i+1}}</a>
+
+        <table class="table table-bordered" width="70%" cellspacing="0">
+          <thead>
+            <tr>
+              <th width="20%">Name</th>
+              <th width="20%">Price</th>
+              <th width="50%">Description</th>
+              <th width="10%">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of listProduct ">
+              <td>{{item.bookName}}</td>
+              <td>{{item.price | currency : '$' }}</td>
+              <td>{{item.description}}</td>
+              <td><button (click)="onDelete(item.id)" [routerLink]="['/admin/displayproduct']"
+                  routerLinkActive="router-link-active" tooltip="Delete Product" placement="top"
+                  class="btn btn-danger">Delete</button>
+
+                <button [routerLink]="['/edit',item.id]" routerLinkActive="router-link-active"
+                  tooltip="Edit the Product" placement="top" class="btn btn-primary" id="editbutton">Edit</button>
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+        <div style="float: right; ">
+          <div class="pagination" style="padding-top: 20px;">
+            <a type="button" (click)="prePage()">&laquo;</a>
+            <a type="button" *ngFor='let in of arrayOne() ;let i = index' (click)="changepage(i+1)">{{i+1}}</a>
             <a type="button" (click)="nextPage()">&raquo;</a>
           </div>
         </div>
 
 
-        </div>
       </div>
     </div>
-
-
   </div>
+
+
+</div>

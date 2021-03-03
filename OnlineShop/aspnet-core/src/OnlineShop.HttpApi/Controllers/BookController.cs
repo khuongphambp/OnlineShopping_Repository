@@ -1,16 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using OnlineShop.Books;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using Volo.Abp.AspNetCore.Mvc;
 
 namespace OnlineShop.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class BookController : Controller
+    public class BookController : ControllerBase
     {
         private readonly IBookService _productService;
 
@@ -66,7 +63,5 @@ namespace OnlineShop.Controllers
             _productService.DeleteBookById(id);
             return Ok();
         }
-
-        
     }
 }

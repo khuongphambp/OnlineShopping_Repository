@@ -1,42 +1,46 @@
 <div class="card mb-3">
-    <div class="card-header">
-      <i class="fas fa-table"></i>
-      Product</div>
-    <div class="card-body">
-      <div class="table-responsive">
-              <form #userForm="ngForm"  (ngSubmit)="onSubmit()" >
-                      <div class="form-group">
-                      <label for="user-name">Name*</label>
-                      <input  class="form-control" required  style="margin-bottom: 10px;" #bookName="ngModel" type="text" name="bookName" [(ngModel)]="product.bookName" >
-                      </div>
-                      
-                      <div class="alert alert-danger" *ngIf="bookName.invalid && bookName.touched">
-                        Name is required!
-                      </div>
-                    
-                    <div class="form-group">
-                      <label for="password">Price *</label>
-                      <input class="form-control" style="margin-bottom: 10px;" #price="ngModel"  type="text" required   name="price" [(ngModel)]="product.price" >
-                    </div>
-                    
+  <div class="card-header">
+    <i class="fas fa-table"></i>
+    Product
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="user-name">Name*</label>
+          <input class="form-control" id="editname" required #bookName="ngModel" type="text" name="bookName"
+            [(ngModel)]="product.bookName">
+        </div>
 
-                    <div class="alert alert-danger" *ngIf="price.invalid && price.touched">
-                      Please enter Price
-                    </div>
+        <div class="alert alert-danger" *ngIf="bookName.invalid && bookName.touched">
+          Name is required!
+        </div>
 
-                    <div class="form-group">
-                      <label for="address">Description</label>
-                      <input class="form-control" required  type="text" name="description" #description="ngModel" [(ngModel)]="product.description"  style="margin-bottom: 50px;"  >
-                    </div>
+        <div class="form-group">
+          <label for="password">Price *</label>
+          <input class="form-control" id="editprice" style="margin-bottom: 10px;" #price="ngModel" type="text" required
+            name="price" [(ngModel)]="product.price">
+        </div>
 
-                    <div class="alert alert-danger" *ngIf="description.invalid && description.touched">
-                      Please enter Description
-                    </div>
-                       
-                      <div class="account-function" style="width: 20%; margin-left: 600px;">
-                        <button class="btn btn-primary btn-block" type="submit" >Save</button>
-                      </div>
-                    </form>
-      </div>
+
+        <div class="alert alert-danger" *ngIf="price.invalid && price.touched">
+          Please enter Price
+        </div>
+
+        <div class="form-group">
+          <label for="address">Description</label>
+          <input class="form-control" required id="editdescription" type="text" name="description"
+            #description="ngModel" [(ngModel)]="product.description">
+        </div>
+
+        <div class="alert alert-danger" *ngIf="description.invalid && description.touched">
+          Please enter Description
+        </div>
+
+        <div class="account-function" id="savebutton">
+          <button class="btn btn-primary btn-block" type="submit">Save</button>
+        </div>
+      </form>
     </div>
   </div>
+</div>
