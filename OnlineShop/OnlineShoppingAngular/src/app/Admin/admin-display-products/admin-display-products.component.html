@@ -57,8 +57,8 @@
           </tbody>
 
         </table>
-        <div style="float: right; ">
-          <div class="pagination" style="padding-top: 20px;">
+        <div id="paginate">
+          <div class="pagination" id="pagging">
             <a type="button" (click)="prePage()">&laquo;</a>
             <a type="button" *ngFor='let in of arrayOne() ;let i = index' (click)="changepage(i+1)">{{i+1}}</a>
             <a type="button" (click)="nextPage()">&raquo;</a>

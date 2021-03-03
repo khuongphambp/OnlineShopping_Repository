@@ -31,28 +31,50 @@ namespace OnlineShop.Books
             return ObjectMapper.Map<List<Book>, List<BookDto>>(books);
         }
 
-        public async void CreateBook(CreateUpdateBookDto createUpdateBookDto)
+        public async Task<bool> CreateBook(CreateUpdateBookDto createUpdateBookDto)
         {
-            var book = ObjectMapper.Map<CreateUpdateBookDto, Book>(createUpdateBookDto);
+            try
+            {
+                var book = ObjectMapper.Map<CreateUpdateBookDto, Book>(createUpdateBookDto);
+                await _repository.InsertAsync(book);
 
-            await _repository.InsertAsync(book);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+
         }
 
-        public async void UpdateBook(Guid id, CreateUpdateBookDto updateBookDto)
+        public async Task<bool> UpdateBook(Guid id, CreateUpdateBookDto updateBookDto)
         {
-            var book = await _repository.FirstOrDefaultAsync(x => x.Id == id);
-            book.BookName = updateBookDto.BookName;
-            book.Price = updateBookDto.Price;
-            book.Description = updateBookDto.Description;
+            if (updateBookDto != null && DoesBookExit(id))
+            {
+                var book = await _repository.FirstOrDefaultAsync(x => x.Id == id);
+                book.BookName = updateBookDto.BookName;
+                book.Price = updateBookDto.Price;
+                book.Description = updateBookDto.Description;
+                await _repository.UpdateAsync(book);
+                return true;
+            }
 
-            await _repository.UpdateAsync(book);
+            return false;
         }
 
-        public async void DeleteBookById(Guid id)
+        public async Task<bool> DeleteBookById(Guid id)
         {
-            var book = await _repository.FirstOrDefaultAsync(x => x.Id == id);
-
-            await _repository.DeleteAsync(book);
+            try
+            {
+                await _repository.DeleteAsync(x => x.Id == id);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
         }
 
         public BookAggregateDto GetBook(BookParameter parameter)
@@ -60,6 +82,7 @@ namespace OnlineShop.Books
             var count = _repository.Count();
             var toltalpage = (int)Math.Ceiling(count / (double)parameter.PageSize);
             var book = _repository.OrderBy(x => x.BookName).Skip((parameter.PageNumber - 1) * parameter.PageSize).Take(parameter.PageSize).ToList();
+
             var bookaggregateDto = new BookAggregateDto()
             {
                 BookDtos = ObjectMapper.Map<List<Book>, List<BookDto>>(book),
@@ -69,6 +92,18 @@ namespace OnlineShop.Books
             return bookaggregateDto;
         }
 
-        
+        private bool DoesBookExit(Guid id)
+        {
+            try
+            {
+                var book = _repository.FirstOrDefaultAsync(x => x.Id == id);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        }
     }
 }

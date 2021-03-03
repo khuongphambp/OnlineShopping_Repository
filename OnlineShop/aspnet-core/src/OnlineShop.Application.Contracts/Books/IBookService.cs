@@ -10,9 +10,9 @@ namespace OnlineShop.Books
         Task<BookDto> GetBookById(Guid id);
         Task<List<BookDto>> GetAllBook();
         BookAggregateDto GetBook(BookParameter parameter);
-        void CreateBook(CreateUpdateBookDto createUpdateBookDto);
-        void UpdateBook(Guid id, CreateUpdateBookDto updateBookDto);
-        void DeleteBookById(Guid id);
+        Task<bool> CreateBook(CreateUpdateBookDto createUpdateBookDto);
+        Task<bool> UpdateBook(Guid id, CreateUpdateBookDto updateBookDto);
+        Task<bool> DeleteBookById(Guid id);
 
     }
 }
