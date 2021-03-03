@@ -25,15 +25,6 @@ namespace OnlineShop.Controllers
         }
 
         [HttpGet]
-        [Route("getbook")]
-        public IActionResult GetBook()
-        {
-            var listbooks = _productService.GetAllBook();
-
-            return Ok(listbooks);
-        }
-
-        [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetBookById(Guid id)
         {
@@ -42,26 +33,26 @@ namespace OnlineShop.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateBook(CreateUpdateBookDto createUpdateBookDto)
+        public async Task<IActionResult> CreateBook(CreateUpdateBookDto createUpdateBookDto)
         {
-            _productService.CreateBook(createUpdateBookDto);
-            return Ok();
+            var result = await _productService.CreateBook(createUpdateBookDto);
+            return Ok(result);
         }
 
         [HttpPut]
         [Route("{id}")]
-        public IActionResult UpdateBook(Guid id ,CreateUpdateBookDto createUpdateBookDto)
+        public async Task<IActionResult> UpdateBook(Guid id ,CreateUpdateBookDto createUpdateBookDto)
         {
-            _productService.UpdateBook(id,createUpdateBookDto);
-            return Ok();
+            var result = await _productService.UpdateBook(id,createUpdateBookDto);
+            return Ok(result);
         }
 
         [HttpDelete]
         [Route("{id}")]
-        public IActionResult DeleteBookById(Guid id)
+        public async Task<IActionResult> DeleteBookById(Guid id)
         {
-            _productService.DeleteBookById(id);
-            return Ok();
+            var result = await _productService.DeleteBookById(id);
+            return Ok(result);
         }
     }
 }

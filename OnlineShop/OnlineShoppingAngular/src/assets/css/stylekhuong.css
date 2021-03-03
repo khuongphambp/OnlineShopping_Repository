@@ -54,3 +54,11 @@ button.btn-submit:focus,button.btn-submit:hover{
 #editdescription{
     margin-bottom: 50px;
 }
+
+#paginate{
+    float: right;
+}
+
+#pagging{
+    padding-top: 20px;
+}
