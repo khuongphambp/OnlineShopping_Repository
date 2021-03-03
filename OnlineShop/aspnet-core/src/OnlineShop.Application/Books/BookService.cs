@@ -43,16 +43,15 @@ namespace OnlineShop.Books
             catch (Exception)
             {
                 return false;
-                throw;
             }
 
         }
 
         public async Task<bool> UpdateBook(Guid id, CreateUpdateBookDto updateBookDto)
         {
-            if (updateBookDto != null && DoesBookExit(id))
+            var book = await _repository.FirstOrDefaultAsync(x => x.Id == id);
+            if (book != null)
             {
-                var book = await _repository.FirstOrDefaultAsync(x => x.Id == id);
                 book.BookName = updateBookDto.BookName;
                 book.Price = updateBookDto.Price;
                 book.Description = updateBookDto.Description;
@@ -73,7 +72,6 @@ namespace OnlineShop.Books
             catch (Exception)
             {
                 return false;
-                throw;
             }
         }
 
@@ -90,20 +88,6 @@ namespace OnlineShop.Books
             };
 
             return bookaggregateDto;
-        }
-
-        private bool DoesBookExit(Guid id)
-        {
-            try
-            {
-                var book = _repository.FirstOrDefaultAsync(x => x.Id == id);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-                throw;
-            }
         }
     }
 }
