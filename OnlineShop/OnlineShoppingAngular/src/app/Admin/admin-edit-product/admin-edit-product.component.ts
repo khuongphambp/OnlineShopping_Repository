@@ -11,20 +11,23 @@ import { ProductService } from 'src/app/Services/ProductServices.service';
 export class AdminEditProductComponent implements OnInit {
 
   product = new Product('','','','');
+  productId : any;
 
   constructor(private productService:ProductService,private route:ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {
-    let id = this.route.snapshot.paramMap.get('id');
-    this.productService.getProduct(id).subscribe(data=>{
+    this.productId= this.route.snapshot.paramMap.get('id');
+    this.productService.getProduct(this.productId).subscribe(data=>{
       this.product = data;
     console.log(this.product);
+    console.log(this.productId);
+      
     })
 
 }
 
 onSubmit(){
-  this.productService.editProduct(this.product.id,this.product)
+  this.productService.editProduct(this.productId,this.product)
   .subscribe(
     data =>{
       alert('Update Success'),

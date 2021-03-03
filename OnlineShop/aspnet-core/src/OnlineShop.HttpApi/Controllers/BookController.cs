@@ -19,7 +19,6 @@ namespace OnlineShop.Controllers
             _productService = productService;
         }
 
-
         [HttpGet]
         public IActionResult GetBook([FromQuery] BookParameter parameter)
         {
@@ -29,11 +28,20 @@ namespace OnlineShop.Controllers
         }
 
         [HttpGet]
+        [Route("getbook")]
+        public IActionResult GetBook()
+        {
+            var listbooks = _productService.GetAllBook();
+
+            return Ok(listbooks);
+        }
+
+        [HttpGet]
         [Route("{id}")]
-        public async Task<BookDto> GetBookById(Guid id)
+        public async Task<IActionResult> GetBookById(Guid id)
         {
             var book = await _productService.GetBookById(id);
-            return book;
+            return Ok(book);
         }
 
         [HttpPost]

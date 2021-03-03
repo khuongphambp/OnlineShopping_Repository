@@ -8,7 +8,6 @@ namespace OnlineShop
         public OnlineShopApplicationAutoMapperProfile()
         {
             CreateMap<Book, BookDto>();
-            CreateMap<PagedList<Book>, PagedList<BookDto>>();
             CreateMap<CreateUpdateBookDto, Book>();
         }
     }

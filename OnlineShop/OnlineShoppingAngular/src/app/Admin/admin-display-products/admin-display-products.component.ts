@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BookParameter } from 'src/app/Classes/BookParameter';
 import { Product } from 'src/app/Classes/Product';
 import { ProductService } from 'src/app/Services/ProductServices.service';
 
@@ -12,21 +13,22 @@ export class AdminDisplayProductsComponent implements OnInit {
   listProduct : Product[]  = [];
   bookname :any;
   totalpage : any;
-  config: any;
+  bookparameter = new BookParameter(1,3);
 
   constructor(private productService : ProductService) {
-    this.config = {
-      itemsPerPage: 5,
-      currentPage: 1
-    };
+   
    }
 
   ngOnInit(): void {
-    this.productService.getProductByPage(1,5).subscribe(
+    this.getProductbyPage();
+  }
+
+  getProductbyPage(){
+    this.productService.getProductByPage(this.bookparameter).subscribe(
       (response : any)=>{
-        this.listProduct = response.item1;
-        console.log(response.item2);
-        this.totalpage = response.item2;
+        this.listProduct = response.bookDtos;
+        console.log(response);
+        this.totalpage = response.totalPage;
       });
   }
 
@@ -40,6 +42,16 @@ Search(){
   }
 }
 
+onChange(pagesize:any) {
+  this.bookparameter.pageSize = pagesize;
+  if(this.bookparameter.pageNumber = this.totalpage){
+    this.bookparameter.pageNumber = 1;
+    this.ngOnInit();
+  }else{
+    this.getProductbyPage();
+  }
+}
+
 onDelete(id:string){
   this.productService.deleteProduct(id).subscribe(data=>{
     alert('Delete Successfully'),
@@ -48,21 +60,26 @@ onDelete(id:string){
 }
 
 changepage(currenPage:number){
-  this.productService.getProductByPage(currenPage,5).subscribe(
-    (response : any)=>{
-      this.listProduct = response.item1;
-      console.log(response.item2);
-      this.totalpage = response.item2;
-    });
+  this.bookparameter.pageNumber = currenPage;
+  this.getProductbyPage();
 }
 
-changepage1(){
-  console.log("Hello")
-    
+nextPage(){
+  if(this.bookparameter.pageNumber != this.totalpage){
+    this.bookparameter.pageNumber+=1;
+    this.getProductbyPage();
+  }else{
+    this.getProductbyPage();
+  }
 }
 
-pageChanged(event:any){
-  this.config.currentPage = event;
+prePage(){
+  if(this.bookparameter.pageNumber != 1){
+    this.bookparameter.pageNumber-=1;
+    this.getProductbyPage();
+  }else{
+    this.getProductbyPage();
+  }
 }
 
 arrayOne(): any[] {

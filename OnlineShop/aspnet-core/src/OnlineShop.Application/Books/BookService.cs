@@ -67,7 +67,6 @@ namespace OnlineShop.Books
                 TotalPage = toltalpage
             };
 
-
             return bookaggregateDto;
         }
 

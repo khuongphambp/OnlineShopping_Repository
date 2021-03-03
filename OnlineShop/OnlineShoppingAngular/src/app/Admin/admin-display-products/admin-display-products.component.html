@@ -15,15 +15,19 @@
         Product</div>
       <div class="card-body">
         <div>
+          <div>
+          <select (change)="onChange(mySelect.value)"  #mySelect style="width: 50px; text-align: center;" >
+            <option value="3">3</option>
+            <option value="5">5</option>
+          </select>
           <div class="text-lg-right pt-2">
             <button id="create" class="btn btn-primary" type="button" [routerLink]="['/create']" routerLinkActive="router-link-active" >
               <i class="fa fa-plus mr-1"></i>
               <span>New Book</span>
             </button>
           </div>  
-          <nav class="navbar">
-            <input class="form-control" type="text" name="bookname" [(ngModel)] = "bookname" (ngModelChange)="Search()"> 
-          </nav>
+        </div>
+          
           <table class="table table-bordered" width="70%" cellspacing="0">
             <thead>
               <tr>
@@ -45,13 +49,13 @@
             </tbody>
             
           </table>
-
-          <div class="pagination">
-            <a href="">&laquo;</a>
+          <div style="float: right; ">
+          <div class="pagination" style="padding-top: 20px;" >
+            <a type="button" (click)="prePage()" >&laquo;</a>
             <a type="button" *ngFor='let in of arrayOne() ;let i = index' (click)="changepage(i+1)" >{{i+1}}</a>
-            <a href="">&raquo;</a>
+            <a type="button" (click)="nextPage()">&raquo;</a>
           </div>
-
+        </div>
 
 
         </div>

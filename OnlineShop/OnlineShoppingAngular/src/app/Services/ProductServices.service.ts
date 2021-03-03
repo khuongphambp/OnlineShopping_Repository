@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { from, Observable } from "rxjs";
+import { BookParameter } from "../Classes/BookParameter";
 import { Product } from "../Classes/Product";
 import { ProductDto } from "../Classes/ProductDto";
 
@@ -9,14 +10,11 @@ export class ProductService{
 
      private BaseUrl = "https://localhost:44320/api/Book";
 
-     private Test = "https://localhost:44320/api/book/getbook";
-
-     
     constructor(private httpclient : HttpClient){}
 
-   getProducts() : Observable<any> {
-        return this.httpclient.get(this.BaseUrl);
-   }
+    getProductByPage(bookparameter:BookParameter) : Observable<any> {
+     return this.httpclient.get(this.BaseUrl+'/?pageNumber='+bookparameter.pageNumber+'&pageSize='+bookparameter.pageSize);
+     }
 
    getProduct(id:string | null) : Observable<any> {
      return this.httpclient.get(this.BaseUrl+'/'+id);
@@ -33,10 +31,5 @@ export class ProductService{
    editProduct(id : string,product : Product){
      return this.httpclient.put(this.BaseUrl + '/' +id, product);
    }
-
-   getProductByPage(pageNumber : number, pageSize:number) : Observable<any> {
-     return this.httpclient.get(this.Test +'?pageNumber='+pageNumber+'&pageSize='+pageSize);
-     }
-
 
 }
