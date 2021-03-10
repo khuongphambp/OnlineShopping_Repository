@@ -24,7 +24,10 @@ export class AdminCreateProductsComponent implements OnInit {
     .subscribe(reponse=>{
       alert('Add Sucess');
       this.router.navigateByUrl("display");
-    })
+    },(error)=>{
+      alert(error.error.title);
+    }
+    )
   }
 
 }
