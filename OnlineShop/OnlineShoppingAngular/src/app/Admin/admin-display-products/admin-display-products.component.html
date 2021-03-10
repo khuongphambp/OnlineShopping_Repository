@@ -49,7 +49,6 @@
               <td><button (click)="onDelete(item.id)" [routerLink]="['/admin/displayproduct']"
                   routerLinkActive="router-link-active" tooltip="Delete Product" placement="top"
                   class="btn btn-danger">Delete</button>
-
                 <button [routerLink]="['/edit',item.id]" routerLinkActive="router-link-active"
                   tooltip="Edit the Product" placement="top" class="btn btn-primary" id="editbutton">Edit</button>
               </td>
@@ -60,7 +59,7 @@
         <div id="paginate">
           <div class="pagination" id="pagging">
             <a type="button" (click)="prePage()">&laquo;</a>
-            <a type="button" *ngFor='let in of arrayOne() ;let i = index' (click)="changepage(i+1)">{{i+1}}</a>
+            <a type="button" [ngStyle]="{'background-color': (bookparameter.pageNumber == i+1) ? '#73c7af' : '#ffffff'}" *ngFor='let in of arrayOne() ;let i = index' (click)="changepage(i+1)">{{i+1}}</a>
             <a type="button" (click)="nextPage()">&raquo;</a>
           </div>
         </div>
